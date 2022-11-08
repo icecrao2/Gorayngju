@@ -51,13 +51,15 @@ npm start
 - 글 목록
     - 술 이름, 내용, 사진 url
 
-![레이아웃](/study-w-icecrao2/public/img/page.PNG)
+![레이아웃](/public/img/page.PNG)
 
 ## 기능
 
-- 내용 입력 [mordal](/study-w-icecrao2/public/img/mordal.PNG)
+- 내용 입력
+- ![mordal](/public/img/mordal.PNG)
 - 내용 보기
-- 반응형(색깔 변형) [color](/study-w-icecrao2/public/img/responsible.PNG)
+- 반응형(색깔 변형) 
+- ![color](/public/img/responsible.PNG)
 
 ## 트러블 슈팅
 

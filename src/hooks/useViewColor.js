@@ -16,7 +16,7 @@ export const useViewColor = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [color]);
 
-
+    
     const handleColor = () => {
 
         let settingColor = color;
