@@ -1,4 +1,7 @@
 import { useAlcoholInfo } from "../hooks/useAlcoholInfo";
+import {useViewColor} from '../hooks/useViewColor';
+
+let reactHtmlKey = 1;
 
 export const Header = () => {
     
@@ -96,36 +99,59 @@ export const Mordal = ({setMordalState, pushAlcohol}) => {
     const contentInputHandler = (e) => {
         setContent(e.currentTarget.value);
     }
-    return (
+    return (   
         <div style={mordalStyle}>   
 
-            <form style={formStyle}>
+            <form style={formStyle} onSubmit={saveBtnHandler}>
                 <input type="button" onClick={exitBtnHandler} value="X" style={exitButtonStyle} />
                 <label style={labelStyle} htmlFor="name" >이름</label>
-                <input style={inputStyle} value={alcoholInfo.name} onChange={nameInputHandler} type="text" id="name" placeholder="화이트와인" />
+                <input style={inputStyle} required value={alcoholInfo.name} onChange={nameInputHandler} type="text" id="name" placeholder="화이트와인" />
                 
                 <label style={labelStyle} htmlFor="URL" >이미지</label>
-                <input style={inputStyle} value={alcoholInfo.url} onChange={urlInputHandler} type="text" id="URL" placeholder="URL" />
+                <input style={inputStyle} required value={alcoholInfo.url} onChange={urlInputHandler} type="text" id="URL" placeholder="URL" />
                 
                 <label style={labelStyle} htmlFor="content" >내용</label>
-                <input style={inputStyle} value={alcoholInfo.content} onChange={contentInputHandler} type="text" id="content" placeholder="주로 청포도로 해요" />
+                <input style={inputStyle} required value={alcoholInfo.content} onChange={contentInputHandler} type="text" id="content" placeholder="주로 청포도로 해요" />
 
-                <input style={submitStyle} onClick={saveBtnHandler} type="submit" value="저장" />
+                <input style={submitStyle} type="submit" value="저장" />
             </form>
         </div>
     )
 }
 
-export const Main = () => {
+export const Main = ({alcoholList}) => {
 
-    const mainStyle = "border-4 border-blue-200 h-full w-full box-border m-1.5 p-2";
+    const { color } = useViewColor();
+
+    const mainStyle = "flex border-4 border-blue-200 h-full w-full box-border m-1.5 p-2 flex-wrap";
+
+    const divStyle = {
+        backgroundColor: color,
+        width: "250px",
+        height:"300px",
+        borderRadius:"20px",
+        padding:"10px",
+        flexShrink: "0",
+    }
+    const imgStyle = {
+        height:"250px",
+    }
 
     return (
-        <main className={mainStyle} style={{overflow:'scroll'}}></main>
+        <main className={mainStyle} style={{overflow:'scroll'}}>
+            {
+                alcoholList.map((item) => 
+                    <div key={reactHtmlKey++} style={divStyle}>
+                        <img src={item.url} alt={item.name} style={imgStyle}/>
+                        <span>{item.content}</span>
+                    </div>
+                )
+            }
+        </main>
     )
 }
 
-export const Side = ({setMordalState}) => {
+export const Side = ({setMordalState, alcoholList}) => {
 
     const inputStyle = "w-full bg-neutral-800 text-orange-400 rounded-lg p-2 cursor-pointer text-xl" ;
     const sideStyle = "border-4 border-neutral-800 h-full box-border m-1.5 p-2 w-40 shrink-0";
@@ -140,9 +166,7 @@ export const Side = ({setMordalState}) => {
         <nav className={sideStyle}>
             <ul>
                 <li><input type="button" value="추가" onClick={addBtnHandler} className={inputStyle} /></li>
-                <li className={listStyle}>소주</li>
-                <li className={listStyle}>맥주</li>
-                <li className={listStyle}>샴페인</li>
+                {alcoholList.map((item)=><li key={reactHtmlKey++} className={listStyle}>{item.name}</li>)}
             </ul>
         </nav>
     )
