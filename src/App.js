@@ -1,20 +1,18 @@
 import './App.css';
+import { useState } from 'react';
 import {Header, Main, Side, Mordal} from './components/';
 import { useAlcoholList } from './hooks/useAlcoholList';
-import {useMordal} from './hooks/useMordal.js';
-
 
 function App() {
   
-  const {mordalState, setMordalState} = useMordal(false);
+  
+  const [mordalState, setMordalState] = useState(false);
   const {alcoholList, pushAlcohol} = useAlcoholList([]);
 
-  const style = "flex flex-row h-full box-border";
-  
   return (
     <div className="App h-full box-border">
       <Header />
-      <div className={style}>
+      <div className={"flex flex-row h-full box-border"}>
         <Side setMordalState={setMordalState} alcoholList={alcoholList}/>
         <Main alcoholList={alcoholList} />
       </div>

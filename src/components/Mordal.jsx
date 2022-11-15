@@ -8,6 +8,28 @@ export const Mordal = ({setMordalState, pushAlcohol}) => {
         content:''
     });
 
+    const handleExitButtonClick = (e) => {
+        setMordalState(false);
+    }
+
+    const handleSaveButtonClick = (e) => {
+        e.preventDefault();
+        pushAlcohol(alcoholInfo);
+        clearInfo();
+        setMordalState(false);
+    }
+    const handleNameInput = (e) => {
+        setName(e.currentTarget.value);
+    }
+
+    const handleUrlInput = (e) => {
+        setUrl(e.currentTarget.value);
+    }
+
+    const handleContentInput = (e) => {
+        setContent(e.currentTarget.value);
+    }
+
     const mordalStyle = {
         position: "fixed",
         width:"100%",
@@ -66,42 +88,21 @@ export const Mordal = ({setMordalState, pushAlcohol}) => {
         fontSize:"20px",
     }
 
-    const exitBtnHandler = (e) => {
-        setMordalState(false);
-    }
-
-    const saveBtnHandler = (e) => {
-        e.preventDefault();
-        pushAlcohol(alcoholInfo);
-        clearInfo();
-        setMordalState(false);
-    }
-    const nameInputHandler = (e) => {
-        setName(e.currentTarget.value);
-    }
-
-    const urlInputHandler = (e) => {
-        setUrl(e.currentTarget.value);
-    }
-
-    const contentInputHandler = (e) => {
-        setContent(e.currentTarget.value);
-    }
     return (   
         <div style={mordalStyle}>   
 
-            <form style={formStyle} onSubmit={saveBtnHandler}>
-                <input type="button" onClick={exitBtnHandler} value="X" style={exitButtonStyle} />
+            <form style={formStyle} onSubmit={handleSaveButtonClick}>
+                <button onClick={handleExitButtonClick} style={exitButtonStyle} >X</button>
                 <label style={labelStyle} htmlFor="name" >이름</label>
-                <input style={inputStyle} required value={alcoholInfo.name} onChange={nameInputHandler} type="text" id="name" placeholder="화이트와인" />
+                <input style={inputStyle} required value={alcoholInfo.name} onChange={handleNameInput} type="text" id="name" placeholder="화이트와인" />
                 
                 <label style={labelStyle} htmlFor="URL" >이미지</label>
-                <input style={inputStyle} required value={alcoholInfo.url} onChange={urlInputHandler} type="text" id="URL" placeholder="URL" />
+                <input style={inputStyle} required value={alcoholInfo.url} onChange={handleUrlInput} type="text" id="URL" placeholder="URL" />
                 
                 <label style={labelStyle} htmlFor="content" >내용</label>
-                <input style={inputStyle} required value={alcoholInfo.content} onChange={contentInputHandler} type="text" id="content" placeholder="주로 청포도로 해요" />
+                <input style={inputStyle} required value={alcoholInfo.content} onChange={handleContentInput} type="text" id="content" placeholder="주로 청포도로 해요" />
 
-                <input style={submitStyle} type="submit" value="저장" />
+                <button style={submitStyle} type="submit" >저장</button>
             </form>
         </div>
     )

@@ -49,3 +49,19 @@ body{
     transform: rotate(360deg);
   }
 }
+
+.changeColor{
+  color: #F2E7D5;
+}
+
+@media screen and (max-width: 1000px) {
+  .changeColor{
+    color: #F25454;
+  }
+}
+
+@media screen and (max-width: 700px) {
+  .changeColor{
+    color: #7954F1;
+  }
+}
