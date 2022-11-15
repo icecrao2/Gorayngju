@@ -1,5 +1,5 @@
 import './App.css';
-import {Header, Main, Side, Mordal} from './components/MainComponents.jsx';
+import {Header, Main, Side, Mordal} from './components/';
 import { useAlcoholList } from './hooks/useAlcoholList';
 import {useMordal} from './hooks/useMordal.js';
 

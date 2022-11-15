@@ -1,16 +1,4 @@
 import { useAlcoholInfo } from "../hooks/useAlcoholInfo";
-import {useViewColor} from '../hooks/useViewColor';
-
-let reactHtmlKey = 1;
-
-export const Header = () => {
-    
-    const titleStyle = "text-2xl font-bold text-red-600 border-4 border-red-800 box-border m-1.5";
-
-    return (
-        <header className={titleStyle}>고량주</header>
-    )
-}
 
 export const Mordal = ({setMordalState, pushAlcohol}) => {
     
@@ -118,57 +106,3 @@ export const Mordal = ({setMordalState, pushAlcohol}) => {
         </div>
     )
 }
-
-export const Main = ({alcoholList}) => {
-
-    const { color } = useViewColor();
-
-    const mainStyle = "flex border-4 border-blue-200 h-full w-full box-border m-1.5 p-2 flex-wrap";
-
-    const divStyle = {
-        backgroundColor: color,
-        width: "250px",
-        height:"300px",
-        borderRadius:"20px",
-        padding:"10px",
-        flexShrink: "0",
-    }
-    const imgStyle = {
-        height:"250px",
-    }
-
-    return (
-        <main className={mainStyle} style={{overflow:'scroll'}}>
-            {
-                alcoholList.map((item) => 
-                    <div key={reactHtmlKey++} style={divStyle}>
-                        <img src={item.url} alt={item.name} style={imgStyle}/>
-                        <span>{item.content}</span>
-                    </div>
-                )
-            }
-        </main>
-    )
-}
-
-export const Side = ({setMordalState, alcoholList}) => {
-
-    const inputStyle = "w-full bg-neutral-800 text-orange-400 rounded-lg p-2 cursor-pointer text-xl" ;
-    const sideStyle = "border-4 border-neutral-800 h-full box-border m-1.5 p-2 w-40 shrink-0";
-    const listStyle = "text-left text-2xl pt-1 pb-1";
-
-
-    const addBtnHandler = (e) => {
-        setMordalState(true);
-    };
-
-    return (
-        <nav className={sideStyle}>
-            <ul>
-                <li><input type="button" value="추가" onClick={addBtnHandler} className={inputStyle} /></li>
-                {alcoholList.map((item)=><li key={reactHtmlKey++} className={listStyle}>{item.name}</li>)}
-            </ul>
-        </nav>
-    )
-}
-
