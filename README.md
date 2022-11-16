@@ -1,7 +1,5 @@
 # study-w-icecrao2
 
-- [1](1.md)
-
 > [goryangju-website](https://jaewoong-goryangju.netlify.app/)
 
 - [설치 및 실행](#설치-및-실행)
