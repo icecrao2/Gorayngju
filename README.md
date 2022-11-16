@@ -66,3 +66,20 @@ npm start
 - github pull request에서 **there isn't anything to compare** 오류 발생
     - google에 검색해서 문제 해결법 찾아봄
     - 원본 repository를 다시 다운받은 후 다시 pr을 올려보니 잘 실행됐음
+
+## 배포후 관리
+
+1. 불필요한 코드 변경 및 수정
+  1.  components/MainComponent.jsx -> Main.jsx, Mordal.jsx, Side.jsx 등으로 분할
+    - 분할 한 이유 -> 한 파일에 모든 컴포넌트들 다 작성하다 보니 필요한 코드가 잘 보이지 않음
+  2. handler 함수 이름 수정 기존 *handler 이름의 함수를 handle* 이름의 함수로 수정
+    - 수정 한 이유 -> 다른 사람들의 코드 관행이 handle*을 사용하여 똑같이 수정해봄
+  3. 불필요한 hook 제거
+    - 제거 한 이유 -> 딱히 별 다른 로직이 없는 hook들을 쓸데없이 추상화 한 경향이 심했음
+    - 새롭게 배운것 -> react의 hook은 마운트 되기 전과 마운트 된 후 그 사이에 실행됨 
+    그러므로 그 사이에 실행되어야만 하는 로직을 커스텀 hook으로 사용해야만 함.
+
+## 새롭게 배운점
+
+1. react 환경에서 css 스타일 코드를 작성하면 비즈니스 로직이 쉽게 묻힌다는 것을 알게됨
+이러한 문제를 위해 tailwind의 스타일 클래스를 작성하는 스타일 파일을 따로 제작하여 사용하면 좋다는것을 배움.
